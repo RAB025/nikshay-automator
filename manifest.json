@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Nikshay Form Automator",
+  "version": "1.0",
+  "description": "Automates form filling for Nikshay website from a CSV file.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Open Nikshay Automator"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.nikshay.in/*", "<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}

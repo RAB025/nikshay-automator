@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Nikshay Automator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h3>Nikshay Form Automator</h3>
+  <div class="container">
+    <div style="margin-bottom: 10px;">
+      <label><input type="radio" name="mode" value="enrollment" checked> New Enrollment</label><br>
+      <label><input type="radio" name="mode" value="diagnostics"> Add Test</label><br>
+      <label><input type="radio" name="mode" value="both"> Full Flow (Enroll + Test)</label>
+    </div>
+
+    <!-- CSV UPLOAD SECTION -->
+    <div id="csvSection">
+      <label for="csvFileInput">Upload CSV File:</label>
+      <input type="file" id="csvFileInput" accept=".csv">
+      
+      <div id="controls" style="display: none;">
+        <label for="rowSelect">Select Row:</label>
+        <select id="rowSelect"></select>
+      </div>
+    </div>
+    
+    <!-- DIAGNOSTICS SECTION -->
+    <div id="diagnosticsSection" style="display: none;">
+      <div id="patientIdContainer">
+        <label>Patient ID:</label>
+        <input type="text" id="diagPatientId" style="width: 100%; box-sizing: border-box; padding: 6px; margin-bottom: 8px;">
+      </div>
+      
+      <label>Type of Test:</label>
+      <select id="diagTestType">
+        <option value="X-Ray">X-Ray</option>
+        <option value="Truenat">Truenat</option>
+        <option value="Both">Both</option>
+      </select>
+    </div>
+    
+    <!-- BATCH PROGRESS SECTION -->
+    <div id="batchSection" style="display: none; border: 2px solid #007bff; border-radius: 6px; padding: 12px; margin-top: 15px; background-color: #f8f9fa;">
+      <h4 style="margin-top:0; color:#007bff; margin-bottom: 8px;">Batch Process Status</h4>
+      <p style="margin: 0 0 8px 0; font-size: 13px;">Progress: <strong id="batchProgressText">0 / 0</strong> rows</p>
+      <div style="width: 100%; background-color: #e9ecef; border-radius: 4px; margin-bottom: 12px;">
+        <div id="batchProgressBar" style="width: 0%; height: 10px; background-color: #28a745; border-radius: 4px; transition: width 0.3s;"></div>
+      </div>
+      <button id="resumeBatchBtn" class="primary" style="margin-bottom: 5px; width: 100%; display: none;">Resume Paused Batch</button>
+      <button id="downloadResultsBtn" style="margin-bottom: 5px; background-color: #17a2b8; color: white; width: 100%; border: none; border-radius: 4px; padding: 10px;">Download Results CSV</button>
+      <button id="cancelBatchBtn" style="background-color: #dc3545; color: white; width: 100%; border: none; border-radius: 4px; padding: 10px;">Cancel Batch</button>
+    </div>
+
+    <!-- MAIN CONFIG SECTION -->
+    <div id="mainConfigSection">
+      <div id="actionButtons" style="margin-top: 15px;">
+        <button id="fillFormBtn" class="primary" style="margin-bottom: 8px;">Run Single Row</button>
+        <button id="startBatchBtn" style="background-color: #28a745; color: white; width: 100%; border: none; border-radius: 4px; padding: 10px;">Start Batch (All Rows)</button>
+      </div>
+    </div>
+    
+    <div id="status" class="status"></div>
+    
+    <div id="logsContainer" style="display: none;">
+      <h4 style="margin: 10px 0 5px;">Execution Logs</h4>
+      <textarea id="logsArea" readonly></textarea>
+      <button id="copyLogsBtn" style="background-color: #2196F3; margin-top: 5px;">Copy Logs</button>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
